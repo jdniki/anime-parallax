@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>parallax</title>
+    <link href="third-party/less/bootstrap.css" rel="stylesheet">
+
+    <link href="css/wave_svg.less"  type="text/less" rel="stylesheet">
+    <link href="css/sky.less"  type="text/less" rel="stylesheet">
+    <script src="third-party/js/jquery-2.0.3.js"></script>
+    <script src="js/script.js"></script>
+    <script src="third-party/js/less-1.5.0.min.js"></script>
+    <script src="third-party/js/snap.svg-min.js"></script>
+
+    <script>
+        window.onload = function () {
+
+
+            var land = Snap("#land");
+            var bigCircle = land.path("m1021.13204,238.07916c17.39734,-47.34231 63.81534,-125.07921 200.89772,-125.07921c137.08234,0 185.98566,50.63635 208.35367,120.9099c22.36804,70.27353 -66.30066,76.08971 -203.383,76.08971c-137.08235,0 -223.26574,-24.57809 -205.86839,-71.92039z");
+            var smallCircle = land.path("m579,288.62216c24.58893,-47.34232 90.19484,-125.07922 283.94327,-125.07922c193.74841,0 262.86697,50.63635 294.48129,120.90991c31.61438,70.27353 -93.70749,76.08969 -287.45587,76.08969c-193.74841,0 -315.55763,-24.57808 -290.96869,-71.92038z");
+
+
+            var tree = land.path('m1216.1875,39.90813l45.5,-39l45.5,39l-91,0z');
+            var rect = land.rect(1255, 90, 15, 50);
+
+            var treg = land.group(tree, land.path("m1210.00751,66.67812l51.5,-42.99998l51.5,42.99998l-103,0z"),land.path('m1214.04749,98.50313l48.50049,-51l48.49951,51l-97,0z'));
+
+            treg.attr({
+                fill: "#007f00"
+            });
+
+            bigCircle.attr({
+                fill: "#bada55"
+            });
+            smallCircle.attr({
+                fill: "#bada55"
+            });
+
+            var s = Snap("#snap");
+
+            drawCircle( s,  "-33.978 44.10199,-74.5 82.5,-74.5c38.39801,0 -9.5,-0.478" +
+                    " -9.5,33.5c0,33.978 34.89801,65.5 -3.5,65.5c-38.39801,0 -69.5,9.478 -69.5,-24.5z" ,
+                    1440 , 80 , 85 , s.gradient("l(1, 1, 1, 0) #74FAFF-#30ACFF-#007BFF"), 50 );
+
+
+            var s2 = Snap("#snap-2");
+            drawCircle( s2,  "-23.7569 -46.54144,-22 -4,-22c42.54144,0 77,19.2431 77,43c0,23.7569 -25.45856,17 -68,17c-42.54144,0 -5,-14.2431 -5,-38z",
+                    1580 , 50 , 80 , s2.gradient("l(1, 1, 1, 0) #74FAFF-#30ACFF-#30ACFF") , 50 );
+
+
+            var s3 = Snap("#snap-3");
+
+            drawCircle( s3,  "-14.79559 11.64087,-40.5 47,-40.5c35.35913,0 -11,-8.29558 12,27.5c23,35.79558 -30.64087,25.5 -28,26.5c2.64087,1 -24,1.29559 -31,-13.5z" ,
+                    1580 ,80 , 65 , s3.gradient("l(1, 1, 1, 0) #559cfe-#559cfe-#74FAFF"), 50 );
+
+            var background = Snap('#backgroud');
+
+            background.attr({
+                fill: background.gradient("l(1, 0, 1, 1) #f8fefc-#a6fef6-#a6fef6")
+            });
+
+
+
+            Snap.load("img/chibi.svg", function (f) {
+
+                f.selectAll("polygon[fill='#09B39C']").attr({fill: "#bada55"});
+                g = f.select("g");
+                background.append(g);
+                g.drag();
+            });
+
+
+            var sun = background.path("m533.33014,170.7674l-40.15372,15.78006l0,-31.56039l40.15372,15.78033zm-29.1524,-77.79779l-18.28918,42.56816l-20.19208,-22.32339l38.48126," +
+                    "-20.24477zm-70.3717,-32.20219l14.29803,44.39026l-28.59317,0l14.29514,-44.39026zm-70.37125,32.20219l38.52887,20.24477l-20.19171,22.32339l-18.33716," +
+                    "-42.56816zm-29.10464,77.79779l40.15338,-15.78033l0,31.56039l-40.15338,-15.78006zm29.10464,77.77213l18.33716,-42.54239l20.19171,22.32318l-38.52887," +
+                    "20.21921l0,0zm70.37125,32.22797l-14.29514,-44.3898l28.59317,0l-14.29803,44.3898zm70.3717,-32.22797l-38.48126,-20.21921l20.14725,-22.32318l18.33401," +
+                    "42.54239zm-120.1319,-77.77213l0,0c0,-30.38016 22.27994,-55.0127 49.76019,-55.0127c27.48013,0 49.7637,24.63254 49.7637,55.0127c0,30.35483 -22.28357,54.98718 " +
+                    "-49.7637,54.98718c-27.48026,0 -49.76019,-24.63235 -49.76019,-54.98718l0,0z");
+
+
+
+//            background.path('m662.48865,228.97426c0.14783,-1.55017 0.25079,-3.10066 0.25079,-4.70076c0,-27.40338 -22.95651,-49.62305 -51.21136,' +
+//                    '-49.62305c-21.95016,0 -40.65836,13.42479 -47.91074,32.22743c-4.84872,-5.11214 -11.70132,-8.40775 -19.44931,' +
+//                    '-8.40775c-14.55667,0 -26.35391,11.46083 -26.35391,25.56323c0,1.67136 0.14801,3.29332 0.49683,4.86975c-19.45627,3.10028' +
+//                    ' -34.30899,19.33536 -34.30899,39.05867c0,21.92722 18.35312,39.68872 40.96152,39.68872l130.07285,0c22.60742,0 40.96179,-17.76151' +
+//                    ' 40.96179,-39.68872c0,-19.48079 -14.45325,-35.59445 -33.50946,-38.98753z').attr({
+//                        fill:  background.gradient("l(1, 1, 0, 0) #30ACFF-#30ACFF-#74FAFF")
+//            });
+
+
+            sun.attr({
+                fill: "#EAB004"
+            }).data("i", i)
+                    .click(function () {
+                        alert('good morning!');
+                    });
+
+            var i = 0;
+
+            setInterval(function(){
+                        if( i == 0){
+                            sun.animate({fill: '#FFFF99' },1000);
+                            i++;
+                        }else{
+                            sun.animate({fill: '#EAB004' },1000);
+                            i =  0;
+                        }
+                    }, 1000
+            );
+
+
+
+
+        };
+
+        function drawCircle(s, wave_path , wav_path_x , wav_path_y , wav_width , g  ,number) {
+
+            var curve = s.path("m"+wav_path_x+","+wav_path_y+"c0,"+wave_path);
+            var i ;
+            var discs;
+
+            for( i = 0 ; i < number ; i++){
+                discs = s.group(curve, s.path("m"+(wav_path_x-=wav_width)+","+wav_path_y+"c0,"+wave_path));
+                discs.attr({
+                    fill: g,
+                    stroke: g,
+                    strokeWidth: 3
+                });
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+
+
+<div  id="container"  class="container">
+    <div style="height:700px;"></div>
+
+    <div>
+        <div class="background">
+            <svg version="1.1" id="backgroud" class="" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+        </div>
+
+        <div class="wave">
+
+            <div class="land">
+                <div id="cloudy_sky" class="sky_container">
+                    <ul id="sky" class="sky">
+                    </ul>
+                </div>
+                <svg version="1.1" id="land" class="snap" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+
+
+            <ul id="scene" class="scene">
+
+                <li class="layer" data-depth="0.20">
+                    <div class="background-layer-front">
+                        <svg version="1.1" id="snap" class="snap" xmlns="http://www.w3.org/2000/svg"></svg>
+                    </div>
+                </li>
+
+                <li class="layer" data-depth="0.60">
+                    <div class="background-layer-mid">
+                        <svg version="1.1" id="snap-2" class="snap" xmlns="http://www.w3.org/2000/svg"></svg>
+                    </div>
+                </li>
+
+                <li class="layer" data-depth="1.00">
+                    <div class="background-layer-back">
+                        <svg version="1.1" id="snap-3" class="snap" xmlns="http://www.w3.org/2000/svg"></svg>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="under-sea">
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Scripts -->
+    <script src="third-party/js/parallax.js"></script>
+
+    <script>
+
+        // Pretty simple huh?
+        var scene = document.getElementById('scene');
+        var parallax = new Parallax(scene);
+
+    </script>
+
+
+</body>
+</html>

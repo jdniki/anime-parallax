@@ -1,0 +1,140 @@
+
+@numberOfbubble :30;
+body{
+  background: #30ACFF;
+  background: -moz-linear-gradient(90deg, #76b6ff 0%, #e3f9fe 52%);/* FF3.6+ */
+  background: -webkit-gradient(linear, 90deg, color-stop(0%, #76b6ff), color-stop(52%, #e3f9fe));/* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(90deg, #76b6ff 0%, #e3f9fe 52%);/* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(90deg, #76b6ff 0%, #e3f9fe 52%);/* Opera 11.10+ */
+  background: -ms-linear-gradient(90deg, #76b6ff 0%, #e3f9fe 52%);/* IE10+ */
+  background: linear-gradient(0deg, #76b6ff 0%, #e3f9fe 52%);/* W3C */
+}
+.snap {
+  width:1580px;
+  height: 100%;
+  margin-left: -120px;
+}
+#land{
+  height:130%;
+
+}
+.background{width:1440px;
+  height: 700px;
+// / position: absolute;
+}
+.container{
+  width:1440px;
+  overflow:hidden;
+  .under-sea{
+    height: 700px;
+    margin-top: 80px;
+    background: #30ACFF;
+      background: -moz-linear-gradient(90deg, #30ACFF 0%, #559cfe 52%);/* FF3.6+ */
+      background: -webkit-gradient(linear, 90deg, color-stop(0%, #30ACFF), color-stop(52%, #559cfe));/* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(90deg, #30ACFF 0%, #559cfe 52%);/* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(90deg, #30ACFF 0%, #559cfe 52%);/* Opera 11.10+ */
+      background: -ms-linear-gradient(90deg, #30ACFF 0%, #559cfe 52%);/* IE10+ */
+      background: linear-gradient(0deg, #30ACFF 0%, #559cfe 52%);/* W3C */
+      width:100%
+  }
+  .wave{
+   // margin-top:700px;
+    margin-left: -20px;
+    .land{
+      background-repeat: repeat no-repeat;
+      position: absolute;
+      width: 100%;
+      height: 210px;margin-top: -200px;
+    }
+    .background-layer-front{
+            background-position:initial initial;
+            background-repeat:repeat no-repeat;
+            position:absolute;
+            width: 110%;
+            height: 90px;
+    }
+    .background-layer-mid{
+            background-position:initial initial;
+            background-repeat:repeat no-repeat;
+            height:100px;
+            position:absolute;
+            width:110%;
+    }
+    .background-layer-back{
+
+           background-position:initial initial;
+           background-repeat:repeat no-repeat;
+           position:absolute;
+           margin-top: 10px;
+           width:110%;
+           height: 87px;
+
+    }
+  }
+
+}
+
+@keyframes moveUp{
+  from{
+    margin-top: 00px;
+
+    opacity: 1;
+  }
+  to{
+    margin-top: 0px;
+    opacity: 0.3;
+  }
+}
+
+@-webkit-keyframes moveUp{
+  from{
+    margin-top: 700px;
+    opacity: 1;
+  }
+  to{
+    margin-top: 0px;
+    opacity: 0.2;
+  }
+}
+
+
+.bubbleCreate(@var : 50px) {
+  width: @var;
+  height: @var;
+  border: 2px solid #ffffff;
+  border-radius: @var;
+  position: absolute;
+  opacity: 0;
+}
+
+@var  : 45%;
+
+.move (@left : 45% , @duration: 5s ,@delay : 2s) {
+
+  animation: moveUp @duration linear @delay infinite;
+  /* Safari and Chrome: */
+  -webkit-animation: moveUp @duration linear @delay infinite ;
+
+  margin-left: @left;
+}
+
+@val : 5%;
+
+.loopingClass (@index, @class: bubble) when (@index > 0) {
+
+  .@{class}_@{index} {
+    .bubbleCreate(unit(round(abs(cos(@index)*40)),px));
+    .max(@index);
+    .min(@index);
+    .move( @val , unit(round(abs(cos(@index)*5)),s) , unit(round(abs(tan(@index)*10)),s) );
+  }
+
+  .loopingClass(@index - 1);
+}
+.max(@a )when(@a > 19){ @val : (@a - 19)*5%}
+.min(@a )when(@a < 20){ @val : @a*5%}
+// end the loop when index is 0
+.loopingClass (0) {}
+
+.loopingClass(@numberOfbubble);
+

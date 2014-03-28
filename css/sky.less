@@ -1,0 +1,146 @@
+
+@numberOfcloud : 10;
+
+.container{
+  margin: 0px;
+  padding : 0px;
+}
+
+.sky{
+  margin-left: -200px !important;
+}
+#cloudy_sky{
+  height:786px;
+  width:90%;
+  position: absolute;
+}
+
+@keyframes moveSide{
+  from{
+    margin-left: -100px;
+    opacity: 1;
+  }
+  to{
+    margin-left: 1440px;
+    opacity: 1;
+  }
+}
+
+@val : 5%;
+
+@-webkit-keyframes moveSide{
+  0%{
+    margin-left: 0px;
+    opacity: 0.3;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+
+    margin-left: 1440px;
+    opacity: 0;
+  }
+}
+
+///------------- cloud sky-------------------//
+
+
+@var  : 45%;
+
+.move (@left : 15% , @duration: 5s ,@delay : 2s) {
+
+  animation: moveSide @duration linear @delay infinite;
+  /* Safari and Chrome: */
+  -webkit-animation: moveSide @duration linear @delay infinite ;
+  margin-top: @left;
+}
+
+@val : 5%;
+@speed :10s;
+
+.loopingClass (@index, @class: cloud) when (@index > 0) {
+
+  .@{class}_@{index} {
+
+    .max(@index);
+    .min(@index);
+    .zero(@index);
+    .more(@index);
+    .move( @val  , @speed , unit(round(abs(cos(@index)*10))+1,s) );
+  }
+
+  .loopingClass(@index - 1);
+}
+.zero(@a)when(@a > 1){
+  @speed : unit(round(abs(tan(@a)*20))+1,s)
+}
+
+.more(@a)when(@a > 20){
+  @speed : unit(round(abs(tan(@a)*20))+1,s)
+}
+
+.max(@a )when(@a > 19){ @val : (@a - 19)*5%}
+.min(@a )when(@a < 20){ @val : @a*5%}
+// end the loop when index is 0
+.loopingClass (0) {}
+
+.loopingClass(@numberOfcloud);
+
+///..........................................................................///
+
+
+.sky {
+  width: 175px; height: 60px;
+  background: #30ACFF;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  position: absolute;
+  margin: -200px auto 20px;
+}
+
+.sky:after, .sky:before {
+  content: '';
+  position: absolute;
+  background: #30ACFF;
+  background: linear-gradient(top, #559cfe 5%, #30ACFF 100%);
+  background: -webkit-linear-gradient(top, #559cfe 5%, #30ACFF 100%);
+  background: -moz-linear-gradient(top, #559cfe 5%, #30ACFF 100%);
+  background: -ms-linear-gradient(top, #559cfe 5%, #30ACFF 100%);
+  background: -o-linear-gradient(top, #559cfe 5%, #30ACFF 100%);
+  z-index: -1
+}
+
+.sky:after {
+  width: 50px; height: 50px;
+  top: -25px; left: 25px;
+
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+}
+
+.sky:before {
+  width: 90px; height: 90px;
+  top: -45px; right: 25px;
+
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+}
+
+.shadow {
+  width: 175px;
+  position: absolute; bottom: -10px;
+  background: #000;
+  z-index: -1;
+
+  box-shadow: 0 0 25px 8px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 25px 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 25px 8px rgba(0, 0, 0, 0.4);
+
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
